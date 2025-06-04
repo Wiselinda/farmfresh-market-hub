@@ -5,15 +5,10 @@ const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 // Load environment variables
 dotenv.config();
 
-// Import routes
-const vendorRoutes = require('./routes/vendorRoutes');
-const productRoutes = require('./routes/productRoutes');
-
+// Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -21,11 +16,15 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Swagger documentation route (this must be *after* app is initialized)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Import routes
+const vendorRoutes = require('./routes/vendorRoutes');
+const productRoutes = require('./routes/productRoutes');
+
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection failed:', err));
 
