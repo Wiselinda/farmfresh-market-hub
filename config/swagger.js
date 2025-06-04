@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000', // Change to Render URL after deployment
+        url: 'https://farmfresh-api.onrender.com', 
         description: 'Local server',
       },
     ],
