@@ -28,6 +28,10 @@ mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection failed:', err));
 
+mongoose.connection.on('connected', () => {
+  console.log(`✅ Connected to MongoDB Database: ${mongoose.connection.name}`);
+});
+
 // Routes
 app.use('/api/vendors', vendorRoutes);
 app.use('/api/products', productRoutes);
