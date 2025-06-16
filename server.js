@@ -19,22 +19,26 @@ app.use(express.json());
 // Swagger documentation route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Import routes
-const vendorRoutes = require('./routes/vendorRoutes');
-const productRoutes = require('./routes/productRoutes');
-
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log('MongoDB connected'))
-.catch((err) => console.error('MongoDB connection failed:', err));
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.error('MongoDB connection failed:', err));
 
 mongoose.connection.on('connected', () => {
   console.log(`✅ Connected to MongoDB Database: ${mongoose.connection.name}`);
 });
 
-// Routes
+// Import routes
+const vendorRoutes = require('./routes/vendorRoutes');
+const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+
+// API Routes
 app.use('/api/vendors', vendorRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Default route
 app.get('/', (req, res) => {

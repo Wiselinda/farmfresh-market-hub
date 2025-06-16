@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const vendorController = require('../controllers/vendorController');
+const checkJwt = require('../middleware/auth');
 
 /**
  * @swagger
@@ -48,6 +49,8 @@ router.get('/:id', vendorController.getVendorById);
  *   post:
  *     summary: Create a new vendor
  *     tags: [Vendors]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -82,6 +85,8 @@ router.post('/', vendorController.createVendor);
  *   put:
  *     summary: Update vendor
  *     tags: [Vendors]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

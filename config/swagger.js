@@ -10,9 +10,13 @@ const options = {
     },
     servers: [
       {
-        url: 'https://farmfresh-api.onrender.com', 
-        description: 'Local server',
+        url: 'https://farmfresh-api.onrender.com',
+        description: 'Production server (Render)',
       },
+      {
+        url: 'http://localhost:3000',
+        description: 'Local development server',
+      }
     ],
     components: {
       securitySchemes: {
@@ -23,9 +27,13 @@ const options = {
         },
       },
     },
-    security: [{ bearerAuth: [] }],
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  apis: ['./routes/*.js'], 
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
+const checkJwt = require('../middleware/auth');
 
 /**
  * @swagger
@@ -48,6 +49,8 @@ router.get('/:id', productController.getProductById);
  *   post:
  *     summary: Create a new product
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -83,6 +86,8 @@ router.post('/', productController.createProduct);
  *   put:
  *     summary: Update product
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
