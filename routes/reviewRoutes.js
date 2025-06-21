@@ -57,10 +57,12 @@ router.get('/:id', reviewController.getReviewById);
  *             type: object
  *             required: [vendor, rating]
  *             properties:
+ *               customerName:
+ *                  string
  *               vendor:
- *                 type: string
+ *                  type: string
  *               rating:
- *                 type: number
+ *                  type: number
  *               comment:
  *                 type: string
  *     responses:
@@ -89,6 +91,15 @@ router.post('/', reviewController.createReview);
  *         application/json:
  *           schema:
  *             type: object
+ *              properties:
+ *               customerName:
+ *                  string
+ *               vendor:
+ *                  type: string
+ *               rating:
+ *                  type: number
+ *               comment:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Review updated

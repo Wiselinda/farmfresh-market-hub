@@ -57,13 +57,13 @@ router.get('/:id', orderController.getOrderById);
  *             type: object
  *             required: [vendor, products, total]
  *             properties:
+ *               cuctomerName:
+ *                  string
  *               vendor:
  *                 type: string
  *               products:
  *                 type: array
- *                 items:
- *                   type: string
- *               total:
+ *               totalPrice:
  *                 type: number
  *     responses:
  *       201:
@@ -85,6 +85,15 @@ router.post('/', orderController.createOrder);
  *         required: true
  *         schema:
  *           type: string
+ *              properties:
+ *               cuctomerName:
+ *                  string
+ *               vendor:
+ *                 type: string
+ *               products:
+ *                 type: array
+ *               totalPrice:
+ *                 type: number
  *     requestBody:
  *       required: true
  *       content:
